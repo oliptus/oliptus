@@ -48,6 +48,34 @@ pnpm dev
 pnpm build
 ```
 
+## 🔄 CI/CD Automático
+
+O projeto está configurado com GitHub Actions para deploy automático!
+
+### Como funciona:
+
+1. Faça suas alterações no código
+2. Commit e push para `main`:
+   ```bash
+   git add .
+   git commit -m "sua mensagem"
+   git push
+   ```
+3. **GitHub Actions automaticamente**:
+   - Faz build da aplicação
+   - Deploy no S3
+   - Invalida cache do CloudFront
+   - Atualiza Lambda (se API mudou)
+
+### Configurar CI/CD:
+
+Siga as instruções em [`.github/SETUP_SECRETS.md`](.github/SETUP_SECRETS.md) para adicionar os secrets necessários:
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `CLOUDFRONT_DISTRIBUTION_ID`
+
+Depois disso, todo push na `main` vai fazer deploy automático! 🎉
+
 ## 🌐 Deploy na AWS
 
 ### 1. Configurar AWS
