@@ -14,6 +14,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@codegenie/serverless-express':
+        specifier: ^4.15.0
+        version: 4.17.0
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -103,6 +106,10 @@ packages:
   '@babel/runtime@7.28.4':
     resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
     engines: {node: '>=6.9.0'}
+
+  '@codegenie/serverless-express@4.17.0':
+    resolution: {integrity: sha512-KebLJ34yHNWFoC9D+iF1Ft+6T8hj0mdylP9d2SFERNuVPOc6UqAvgxm9mY6r2V3wCJ+BPpG2vEHihpUtCT3dEg==}
+    engines: {node: '>=18'}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -1953,6 +1960,8 @@ snapshots:
   '@alloc/quick-lru@5.2.0': {}
 
   '@babel/runtime@7.28.4': {}
+
+  '@codegenie/serverless-express@4.17.0': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
