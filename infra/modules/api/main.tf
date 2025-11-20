@@ -1,8 +1,8 @@
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../../../oliptus/apps/api"
+  source_dir  = "${path.module}/../../../apps/api"
   output_path = "${path.module}/lambda.zip"
-  excludes    = ["node_modules"]
+  excludes    = []
 }
 
 resource "aws_iam_role" "lambda_role" {
