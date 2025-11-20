@@ -1,11 +1,13 @@
 {
-    "name": "oliptus-api",
+    "name": "@oliptus/api",
     "version": "1.0.0",
     "description": "Backend API for Oliptus Landing Page",
     "main": "src/server.js",
     "scripts": {
         "start": "node src/server.js",
-        "dev": "node --watch src/server.js"
+        "dev": "node --watch src/server.js",
+        "build": "echo 'Build concluído'",
+        "clean": "rm -rf dist"
     },
     "keywords": [],
     "author": "",
