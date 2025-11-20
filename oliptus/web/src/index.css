@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-orange: #FF6B00;
+    --secondary-orange: #FF8533;
+    --accent-orange: #FF9E66;
+    --dark-bg: #0a0a0a;
+    --light-bg: #0a0a0a;
+    /* Changed to dark for dark mode */
+    --card-bg: #171717;
+    --text-primary: #ffffff;
+    --text-secondary: #a3a3a3;
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@keyframes halo-pulse {
+
+    0%,
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 0.8;
+    }
+}
+
+@keyframes halo-pulse-reverse {
+
+    0%,
+    100% {
+        transform: scale(1.05) translateX(0);
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: scale(0.95) translateX(10px);
+        opacity: 1;
+    }
+}
+
+@keyframes halo-pulse-slow {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.15) rotate(5deg);
+        opacity: 1;
+    }
+}
+
+.animate-halo-pulse {
+    animation: halo-pulse 8s ease-in-out infinite;
+}
+
+.animate-halo-pulse-reverse {
+    animation: halo-pulse-reverse 10s ease-in-out infinite;
+}
+
+.animate-halo-pulse-slow {
+    animation: halo-pulse-slow 12s ease-in-out infinite;
+}

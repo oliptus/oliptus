@@ -1,0 +1,107 @@
+{
+    "hero": {
+        "title_prefix": "Transforming Ideas into",
+        "title_highlight": "Digital Reality",
+        "subtitle": "Oliptus is a premium software house dedicated to crafting exceptional digital experiences with precision and passion.",
+        "cta": "Start Your Project"
+    },
+    "services": {
+        "title": "Our Expertise",
+        "subtitle": "We deliver comprehensive technology solutions to drive your business forward.",
+        "items": {
+            "custom_software": {
+                "title": "Custom Software",
+                "description": "Tailor-made solutions designed to fit your specific business needs and workflows."
+            },
+            "mobile_development": {
+                "title": "Mobile Development",
+                "description": "Native and cross-platform mobile applications that deliver seamless user experiences."
+            },
+            "web_applications": {
+                "title": "Web Applications",
+                "description": "Robust and scalable web apps built with modern technologies and best practices."
+            },
+            "cloud_solutions": {
+                "title": "Cloud Solutions",
+                "description": "Secure and efficient cloud infrastructure setup, migration, and management."
+            }
+        }
+    },
+    "about": {
+        "title_prefix": "Building the Future of",
+        "title_highlight": "Digital Innovation",
+        "description": "At Oliptus, we don't just write code; we engineer solutions. Our team of expert developers and designers works collaboratively to transform complex challenges into elegant, user-friendly software.",
+        "features": {
+            "agile": "Agile Development Methodology",
+            "clean_code": "Clean & Maintainable Code",
+            "user_centric": "User-Centric Design",
+            "scalable": "Scalable Architecture"
+        }
+    },
+    "projects": {
+        "title": "Featured Work",
+        "subtitle": "Discover how we've helped innovative companies achieve their digital goals.",
+        "items": {
+            "fintech": {
+                "title": "FinTech Dashboard",
+                "category": "Web Application",
+                "description": "A comprehensive financial analytics dashboard with real-time data visualization."
+            },
+            "ecommerce": {
+                "title": "E-Commerce Platform",
+                "category": "Mobile App",
+                "description": "Full-featured shopping application with AR product preview capabilities."
+            },
+            "healthcare": {
+                "title": "Healthcare Portal",
+                "category": "Web Platform",
+                "description": "Secure patient management system connecting doctors and patients."
+            }
+        }
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "Ready to start your next project? Contact us today for a free consultation.",
+        "info": {
+            "email": {
+                "title": "Email Us"
+            },
+            "phone": {
+                "title": "Call Us"
+            },
+            "visit": {
+                "title": "Visit Us",
+                "address_1": "Av. Paulista, 1000",
+                "address_2": "São Paulo, SP - Brazil"
+            }
+        },
+        "form": {
+            "name": "Name",
+            "name_placeholder": "John Doe",
+            "email": "Email",
+            "email_placeholder": "john@example.com",
+            "subject": "Subject",
+            "subject_placeholder": "Project Inquiry",
+            "message": "Message",
+            "message_placeholder": "Tell us about your project...",
+            "submit": "Send Message"
+        }
+    },
+    "footer": {
+        "description": "Crafting digital excellence through innovation and technology. We build the software that powers the future.",
+        "quick_links": {
+            "title": "Quick Links",
+            "home": "Home",
+            "services": "Services",
+            "portfolio": "Portfolio",
+            "about": "About Us",
+            "contact": "Contact"
+        },
+        "connect": {
+            "title": "Connect"
+        },
+        "rights": "Oliptus. All rights reserved.",
+        "made_with": "Made with",
+        "in_brazil": "by Oliptus"
+    }
+}

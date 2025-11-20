@@ -1,0 +1,107 @@
+{
+    "hero": {
+        "title_prefix": "Transformando Ideias em",
+        "title_highlight": "Realidade Digital",
+        "subtitle": "A Oliptus é uma software house premium dedicada a criar experiências digitais excepcionais com precisão e paixão.",
+        "cta": "Inicie Seu Projeto"
+    },
+    "services": {
+        "title": "Nossa Expertise",
+        "subtitle": "Entregamos soluções tecnológicas abrangentes para impulsionar o seu negócio.",
+        "items": {
+            "custom_software": {
+                "title": "Software Sob Medida",
+                "description": "Soluções personalizadas projetadas para atender às necessidades e fluxos de trabalho específicos do seu negócio."
+            },
+            "mobile_development": {
+                "title": "Desenvolvimento Mobile",
+                "description": "Aplicativos móveis nativos e multiplataforma que oferecem experiências de usuário perfeitas."
+            },
+            "web_applications": {
+                "title": "Aplicações Web",
+                "description": "Apps web robustos e escaláveis construídos com tecnologias modernas e melhores práticas."
+            },
+            "cloud_solutions": {
+                "title": "Soluções em Nuvem",
+                "description": "Configuração, migração e gerenciamento de infraestrutura em nuvem segura e eficiente."
+            }
+        }
+    },
+    "about": {
+        "title_prefix": "Construindo o Futuro da",
+        "title_highlight": "Inovação Digital",
+        "description": "Na Oliptus, não apenas escrevemos código; nós projetamos soluções. Nossa equipe de desenvolvedores e designers especialistas trabalha colaborativamente para transformar desafios complexos em software elegante e amigável.",
+        "features": {
+            "agile": "Metodologia de Desenvolvimento Ágil",
+            "clean_code": "Código Limpo e Manutenível",
+            "user_centric": "Design Centrado no Usuário",
+            "scalable": "Arquitetura Escalável"
+        }
+    },
+    "projects": {
+        "title": "Trabalhos em Destaque",
+        "subtitle": "Descubra como ajudamos empresas inovadoras a alcançar seus objetivos digitais.",
+        "items": {
+            "fintech": {
+                "title": "Dashboard FinTech",
+                "category": "Aplicação Web",
+                "description": "Um painel de análise financeira abrangente com visualização de dados em tempo real."
+            },
+            "ecommerce": {
+                "title": "Plataforma E-Commerce",
+                "category": "App Mobile",
+                "description": "Aplicativo de compras completo com recursos de visualização de produtos em RA."
+            },
+            "healthcare": {
+                "title": "Portal de Saúde",
+                "category": "Plataforma Web",
+                "description": "Sistema seguro de gestão de pacientes conectando médicos e pacientes."
+            }
+        }
+    },
+    "contact": {
+        "title": "Entre em Contato",
+        "subtitle": "Pronto para começar seu próximo projeto? Contate-nos hoje para uma consulta gratuita.",
+        "info": {
+            "email": {
+                "title": "Envie um Email"
+            },
+            "phone": {
+                "title": "Ligue para Nós"
+            },
+            "visit": {
+                "title": "Visite-nos",
+                "address_1": "Av. Paulista, 1000",
+                "address_2": "São Paulo, SP - Brasil"
+            }
+        },
+        "form": {
+            "name": "Nome",
+            "name_placeholder": "João Silva",
+            "email": "Email",
+            "email_placeholder": "joao@exemplo.com",
+            "subject": "Assunto",
+            "subject_placeholder": "Consulta de Projeto",
+            "message": "Mensagem",
+            "message_placeholder": "Conte-nos sobre seu projeto...",
+            "submit": "Enviar Mensagem"
+        }
+    },
+    "footer": {
+        "description": "Criando excelência digital através de inovação e tecnologia. Construímos o software que impulsiona o futuro.",
+        "quick_links": {
+            "title": "Links Rápidos",
+            "home": "Início",
+            "services": "Serviços",
+            "portfolio": "Portfólio",
+            "about": "Sobre Nós",
+            "contact": "Contato"
+        },
+        "connect": {
+            "title": "Conectar"
+        },
+        "rights": "Oliptus. Todos os direitos reservados.",
+        "made_with": "Feito com",
+        "in_brazil": "por Oliptus"
+    }
+}
