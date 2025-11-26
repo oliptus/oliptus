@@ -29,24 +29,27 @@ const Navbar = () => {
         <AnimatePresence>
             {isVisible && (
                 <motion.nav
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 100, opacity: 0 }}
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -100, opacity: 0 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="fixed bottom-6 left-0 right-0 flex justify-center z-50"
+                    className="fixed left-6 inset-y-0 flex items-center z-50"
                 >
-                    <div className="hidden md:flex items-center gap-2 px-4 py-3 rounded-2xl shadow-2xl relative bg-zinc-900/95 backdrop-blur-md overflow-hidden">
-                        <BorderBeam size={100} duration={8} />
+                    <div className="hidden md:flex flex-col items-center gap-2 px-3 py-4 rounded-2xl shadow-2xl relative bg-zinc-900/95 backdrop-blur-md overflow-hidden">
+                        <BorderBeam size={80} duration={6} />
                         {navLinks.map((link) => {
                             const Icon = link.icon;
                             return (
                                 <a
                                     key={link.key}
                                     href={link.href}
-                                    className="relative flex items-center gap-2 px-5 py-2.5 text-gray-300 hover:text-white hover:bg-zinc-800/50 rounded-xl font-medium transition-all duration-200"
+                                    className="relative flex items-center justify-center w-12 h-12 text-gray-300 hover:text-white hover:bg-zinc-800/50 rounded-xl transition-all duration-200 group"
+                                    title={t(`footer.quick_links.${link.key}`)}
                                 >
-                                    <Icon className="w-4 h-4 opacity-70" />
-                                    {t(`footer.quick_links.${link.key}`)}
+                                    <Icon className="w-5 h-5" />
+                                    <span className="absolute left-full ml-3 px-3 py-1.5 bg-zinc-900 text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                                        {t(`footer.quick_links.${link.key}`)}
+                                    </span>
                                 </a>
                             );
                         })}
@@ -63,11 +66,11 @@ const Navbar = () => {
                         <AnimatePresence>
                             {isMobileMenuOpen && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                                    initial={{ opacity: 0, x: -20, scale: 0.9 }}
+                                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                                    exit={{ opacity: 0, x: -20, scale: 0.9 }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden min-w-[200px]"
+                                    className="absolute left-16 top-0 bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden min-w-[200px]"
                                 >
                                     <div className="py-2">
                                         {navLinks.map((link) => {
