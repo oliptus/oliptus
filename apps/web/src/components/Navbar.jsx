@@ -1,98 +1,97 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, Briefcase, User, FolderOpen, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '../assets/logo.svg';
+import BorderBeam from './BorderBeam';
 
 const Navbar = () => {
     const { t } = useTranslation();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            setIsVisible(window.scrollY > 100);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const navLinks = [
-        { key: 'home', href: '#' },
-        { key: 'services', href: '#services' },
-        { key: 'portfolio', href: '#projects' },
-        { key: 'about', href: '#about' },
-        { key: 'contact', href: '#contact' },
+        { key: 'home', href: '#', icon: Home },
+        { key: 'services', href: '#services', icon: Briefcase },
+        { key: 'portfolio', href: '#projects', icon: FolderOpen },
+        { key: 'about', href: '#about', icon: User },
+        { key: 'contact', href: '#contact', icon: Mail },
     ];
 
     return (
-        <nav
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-6'
-                }`}
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between">
-                    {/* Logo */}
-                    <a href="#" className="flex items-center gap-2 group">
-                        <img src={Logo} alt="Oliptus Logo" className="w-10 h-10 transition-transform group-hover:scale-110" />
-                        <span className="text-2xl font-bold text-white tracking-tight">Oliptus</span>
-                    </a>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.key}
-                                href={link.href}
-                                className="text-gray-300 hover:text-[var(--primary-orange)] font-medium transition-colors relative group"
-                            >
-                                {t(`footer.quick_links.${link.key}`)}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--primary-orange)] transition-all duration-300 group-hover:w-full" />
-                            </a>
-                        ))}
-                        <button className="px-6 py-2 rounded-full border border-[var(--primary-orange)] text-[var(--primary-orange)] font-semibold hover:bg-[var(--primary-orange)] hover:text-white transition-all duration-300">
-                            {t('hero.cta')}
-                        </button>
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-white p-2"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-black/95 backdrop-blur-lg border-t border-gray-800 overflow-hidden"
-                    >
-                        <div className="px-4 py-6 space-y-4 flex flex-col">
-                            {navLinks.map((link) => (
+        <AnimatePresence>
+            {isVisible && (
+                <motion.nav
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 100, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="fixed bottom-6 left-0 right-0 flex justify-center z-50"
+                >
+                    <div className="hidden md:flex items-center gap-2 px-4 py-3 rounded-2xl shadow-2xl relative bg-zinc-900/95 backdrop-blur-md overflow-hidden">
+                        <BorderBeam size={100} duration={8} />
+                        {navLinks.map((link) => {
+                            const Icon = link.icon;
+                            return (
                                 <a
                                     key={link.key}
                                     href={link.href}
-                                    className="text-lg text-gray-300 hover:text-[var(--primary-orange)] font-medium transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="relative flex items-center gap-2 px-5 py-2.5 text-gray-300 hover:text-white hover:bg-zinc-800/50 rounded-xl font-medium transition-all duration-200"
                                 >
+                                    <Icon className="w-4 h-4 opacity-70" />
                                     {t(`footer.quick_links.${link.key}`)}
                                 </a>
-                            ))}
-                            <button className="w-full px-6 py-3 rounded-lg bg-[var(--primary-orange)] text-white font-semibold hover:bg-[var(--secondary-orange)] transition-colors">
-                                {t('hero.cta')}
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </nav>
+                            );
+                        })}
+                    </div>
+
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="flex items-center justify-center w-14 h-14 bg-zinc-900/90 backdrop-blur-md rounded-full shadow-2xl border border-zinc-800 text-white"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+
+                        <AnimatePresence>
+                            {isMobileMenuOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden min-w-[200px]"
+                                >
+                                    <div className="py-2">
+                                        {navLinks.map((link) => {
+                                            const Icon = link.icon;
+                                            return (
+                                                <a
+                                                    key={link.key}
+                                                    href={link.href}
+                                                    className="flex items-center gap-3 px-5 py-3 text-gray-300 hover:text-white hover:bg-zinc-800 font-medium transition-colors"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    <Icon className="w-4 h-4 opacity-70" />
+                                                    {t(`footer.quick_links.${link.key}`)}
+                                                </a>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </motion.nav>
+            )}
+        </AnimatePresence>
     );
 };
 

@@ -84,3 +84,97 @@ body {
 .animate-halo-pulse-slow {
     animation: halo-pulse-slow 12s ease-in-out infinite;
 }
+
+@keyframes border-travel {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.navbar-glow-container {
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.navbar-glow-top,
+.navbar-glow-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+}
+
+.navbar-glow-top {
+    top: 0;
+}
+
+.navbar-glow-bottom {
+    bottom: 0;
+}
+
+.navbar-glow-top::before,
+.navbar-glow-bottom::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+    animation: border-travel 2.5s linear infinite;
+}
+
+.navbar-glow-bottom::before {
+    animation-delay: -1.25s;
+    animation-direction: reverse;
+}
+
+.navbar-glow-left,
+.navbar-glow-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+}
+
+.navbar-glow-left {
+    left: 0;
+}
+
+.navbar-glow-right {
+    right: 0;
+}
+
+@keyframes border-travel-vertical {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.navbar-glow-left::before,
+.navbar-glow-right::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(180deg, transparent, var(--primary-orange), transparent);
+    animation: border-travel-vertical 2.5s linear infinite;
+}
+
+.navbar-glow-left::before {
+    animation-delay: -1.25s;
+    animation-direction: reverse;
+}
+
+.navbar-glow-right::before {
+    animation-delay: 0s;
+}
