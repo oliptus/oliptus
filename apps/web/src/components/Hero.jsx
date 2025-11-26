@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import HALO from 'vanta/dist/vanta.halo.min';
-import NET from 'vanta/dist/vanta.net.min';
-import FOG from 'vanta/dist/vanta.fog.min';
 import * as THREE from 'three';
+import GLOBE from 'vanta/dist/vanta.globe.min';
 import Navbar from './Navbar';
 
 import { useTranslation } from 'react-i18next';
+
+const randomRange = (min, max) => Math.random() * (max - min) + min;
+const randomColor = () => {
+    const colors = [0xff6600, 0xff8533, 0xff4500, 0xcc5200, 0xff9966, 0xffffff, 0xaaaaaa];
+    return colors[Math.floor(Math.random() * colors.length)];
+};
 
 const Hero = () => {
     const { t } = useTranslation();
@@ -15,26 +19,27 @@ const Hero = () => {
     const vantaRef = useRef(null);
 
     useEffect(() => {
-        // Simple visit logger
-        fetch('http://localhost:3000/api/health').catch(err => console.log('Backend not available'));
+        fetch('http://localhost:3000/api/health').catch(() => {});
 
         if (!vantaEffect) {
             setVantaEffect(
-                FOG({
+                GLOBE({
                     el: vantaRef.current,
                     THREE: THREE,
                     mouseControls: true,
                     touchControls: true,
                     gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    highlightColor: 0xffffff,
-                    midtoneColor: 0xaaaaaa,
-                    lowlightColor: 0x555555,
-                    baseColor: 0x0a0a0a,
-                    blurFactor: 0.6,
-                    speed: 1.0,
-                    zoom: 1.0
+                    minHeight: 200,
+                    minWidth: 200,
+                    scale: 1.0,
+                    scaleMobile: 1.0,
+                    color: 0xff6600,
+                    color2: 0xff8533,
+                    backgroundColor: 0x0a0a0a,
+                    size: 1,
+                    points: 12,
+                    maxDistance: 45,
+                    spacing: 40,
                 })
             );
         }
