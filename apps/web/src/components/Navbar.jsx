@@ -55,7 +55,7 @@ const Navbar = () => {
                         })}
                     </div>
 
-                    <div className="md:hidden">
+                    <div className="md:hidden relative">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="flex items-center justify-center w-14 h-14 bg-zinc-900/90 backdrop-blur-md rounded-full shadow-2xl border border-zinc-800 text-white"
@@ -70,7 +70,7 @@ const Navbar = () => {
                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                     exit={{ opacity: 0, x: -20, scale: 0.9 }}
                                     transition={{ duration: 0.2 }}
-                                    className="absolute left-16 top-0 bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden min-w-[200px]"
+                                    className="absolute left-full ml-2 bottom-0 bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden min-w-[200px]"
                                 >
                                     <div className="py-2">
                                         {navLinks.map((link) => {

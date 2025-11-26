@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import GLOBE from 'vanta/dist/vanta.globe.min';
 import Navbar from './Navbar';
+import ShinyButton from './ShinyButton';
 
 import { useTranslation } from 'react-i18next';
 
@@ -85,10 +86,10 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <button className="group bg-[var(--primary-orange)] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[var(--secondary-orange)] transition-all duration-300 shadow-lg hover:shadow-orange-500/20 flex items-center gap-2">
+                    <ShinyButton>
                         {t('hero.cta')}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </ShinyButton>
                 </motion.div>
             </div>
 
