@@ -57,14 +57,14 @@ const Hero = () => {
                 className="absolute top-0 left-0 w-full h-full z-0"
             />
 
-            <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div className="relative z-10 text-left px-4 md:px-16 max-w-4xl mr-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-                        {t('hero.title_prefix')} <br />
+                        {t('hero.title_prefix')}{' '}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-orange)] to-[var(--secondary-orange)]">
                             {t('hero.title_highlight')}
                         </span>
@@ -75,7 +75,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
+                    className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl leading-relaxed"
                 >
                     {t('hero.subtitle')}
                 </motion.p>
@@ -85,7 +85,7 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <button className="group bg-[var(--primary-orange)] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[var(--secondary-orange)] transition-all duration-300 shadow-lg hover:shadow-orange-500/20 flex items-center gap-2 mx-auto">
+                    <button className="group bg-[var(--primary-orange)] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[var(--secondary-orange)] transition-all duration-300 shadow-lg hover:shadow-orange-500/20 flex items-center gap-2">
                         {t('hero.cta')}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
