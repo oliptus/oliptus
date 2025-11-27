@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import GLOBE from 'vanta/dist/vanta.globe.min';
+import Logo3D from './Logo3D';
 import Navbar from './Navbar';
 import ShinyButton from './ShinyButton';
 
@@ -63,6 +64,15 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
+                    className="mb-4"
+                >
+                    <Logo3D />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
                 >
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
                         {t('hero.title_prefix')}{' '}

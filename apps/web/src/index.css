@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 :root {
-    --primary-orange: #FF6B00;
+    --primary-orange: #FF8F39;
     --secondary-orange: #FF8533;
     --accent-orange: #FF9E66;
     --dark-bg: #0a0a0a;
     --light-bg: #0a0a0a;
     /* Changed to dark for dark mode */
     --card-bg: #171717;
-    --text-primary: #ffffff;
+    --text-primary: #F2EFFF;
     --text-secondary: #a3a3a3;
     --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }

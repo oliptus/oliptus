@@ -7,6 +7,7 @@ const SectionDivider = () => {
                 src="https://lottie.host/9daeb961-a917-4a18-8092-012fc79c42b6/YmQmnIqSVK.lottie"
                 loop
                 autoplay
+                speed={.5}
                 style={{ width: 120, height: 120 }}
             />
         </div>
