@@ -10,17 +10,20 @@
     --accent-orange: #FF9E66;
     --dark-bg: #0a0a0a;
     --light-bg: #0a0a0a;
-    /* Changed to dark for dark mode */
     --card-bg: #171717;
     --text-primary: #F2EFFF;
     --text-secondary: #a3a3a3;
     --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+    --supernova-core: 28 100% 70%;
+    --supernova-mid: 15 90% 60%;
+    --supernova-outer: 38 100% 55%;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--light-bg);
+    background-color: var(--dark-bg);
     color: var(--text-primary);
     font-family: var(--font-main);
     overflow-x: hidden;
@@ -32,7 +35,6 @@ body {
 }
 
 @keyframes halo-pulse {
-
     0%,
     100% {
         transform: scale(1) translateY(0);
@@ -46,7 +48,6 @@ body {
 }
 
 @keyframes halo-pulse-reverse {
-
     0%,
     100% {
         transform: scale(1.05) translateX(0);
@@ -60,7 +61,6 @@ body {
 }
 
 @keyframes halo-pulse-slow {
-
     0%,
     100% {
         transform: scale(1) rotate(0deg);
