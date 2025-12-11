@@ -7,7 +7,9 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                sans: ['"Inter"', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                serif: ['"Lyon-Text"', 'Georgia', 'ui-serif', 'serif'],
+                mono: ['"iaWriter-Mono"', 'Menlo', 'Monaco', 'ui-monospace', 'SFMono-Regular', 'monospace'],
             },
             colors: {
                 border: "hsl(var(--border))",
@@ -43,20 +45,29 @@ export default {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-                supernova: {
-                    core: "hsl(var(--supernova-core))",
-                    mid: "hsl(var(--supernova-mid))",
-                    outer: "hsl(var(--supernova-outer))",
-                },
-                glow: "hsl(var(--glow-color))",
-                'primary-orange': '#FF6B00',
-                'secondary-orange': '#FF8533',
-                'accent-orange': '#FF9E66',
             },
             borderRadius: {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
+            },
+            boxShadow: {
+                'notion-card': 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px',
+                'notion-hover': 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 4px 8px',
+            },
+            animation: {
+                marquee: "marquee var(--duration) linear infinite",
+                "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+            },
+            keyframes: {
+                marquee: {
+                    from: { transform: "translateX(0)" },
+                    to: { transform: "translateX(calc(-100% - var(--gap)))" },
+                },
+                "marquee-vertical": {
+                    from: { transform: "translateY(0)" },
+                    to: { transform: "translateY(calc(-100% - var(--gap)))" },
+                },
             },
         },
     },

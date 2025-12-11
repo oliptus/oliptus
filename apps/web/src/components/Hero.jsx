@@ -1,110 +1,57 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import GLOBE from 'vanta/dist/vanta.globe.min';
-import Logo3D from './Logo3D';
-import Navbar from './Navbar';
-import ShinyButton from './ShinyButton';
-
-import { useTranslation } from 'react-i18next';
-
-const randomRange = (min, max) => Math.random() * (max - min) + min;
-const randomColor = () => {
-    const colors = [0xff6600, 0xff8533, 0xff4500, 0xcc5200, 0xff9966, 0xffffff, 0xaaaaaa];
-    return colors[Math.floor(Math.random() * colors.length)];
-};
+import { ArrowRight } from "lucide-react";
+import ShimmerButton from "@/components/magicui/ShimmerButton";
+import WordRotate from "@/components/magicui/WordRotate";
+import ShaderBackground from "@/components/ShaderBackground";
+import { cn } from "@/lib/utils";
 
 const Hero = () => {
-    const { t } = useTranslation();
-    const [vantaEffect, setVantaEffect] = useState(null);
-    const vantaRef = useRef(null);
-
-    useEffect(() => {
-        fetch('http://localhost:3000/api/health').catch(() => {});
-
-        if (!vantaEffect) {
-            setVantaEffect(
-                GLOBE({
-                    el: vantaRef.current,
-                    THREE: THREE,
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200,
-                    minWidth: 200,
-                    scale: 1.0,
-                    scaleMobile: 1.0,
-                    color: 0xff6600,
-                    color2: 0xff8533,
-                    backgroundColor: 0x0a0a0a,
-                    size: 1,
-                    points: 12,
-                    maxDistance: 45,
-                    spacing: 40,
-                })
-            );
-        }
-        return () => {
-            if (vantaEffect) vantaEffect.destroy();
-        };
-    }, []);
-
     return (
-        <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
-            <Navbar />
-
-            <div
-                ref={vantaRef}
-                className="absolute top-0 left-0 w-full h-full z-0"
-            />
-
-            <div className="relative z-10 text-left px-4 md:px-16 max-w-4xl mr-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-4"
-                >
-                    <Logo3D />
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                >
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-                        {t('hero.title_prefix')}{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-orange)] to-[var(--secondary-orange)]">
-                            {t('hero.title_highlight')}
-                        </span>
-                    </h1>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl leading-relaxed"
-                >
-                    {t('hero.subtitle')}
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                    <ShinyButton>
-                        {t('hero.cta')}
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </ShinyButton>
-                </motion.div>
+        <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-background px-4 pt-16 text-center">
+            {/* Background Pattern - Shader */}
+            <div className="absolute inset-0 h-full w-full opacity-40">
+                <ShaderBackground />
             </div>
 
-            {/* Smooth transition to next section (Dark) */}
-            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[var(--dark-bg)] via-[var(--dark-bg)]/50 to-transparent z-20 pointer-events-none" />
+            <div className="z-10 max-w-5xl space-y-8">
+                {/* Availability Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-sm">
+                    <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                    </span>
+                    Disponível para novos projetos
+                </div>
+
+                {/* Main Title with Word Rotate */}
+                <h1 className="text-5xl font-bold tracking-tighter text-foreground sm:text-7xl md:text-8xl leading-[1.1]">
+                    Nós criamos <br className="hidden md:block" />
+                    <WordRotate
+                        className="text-foreground"
+                        words={["Produtos Digitais", "Aplicações Web", "Soluções de Software", "Experiências Únicas"]}
+                    />
+                </h1>
+
+                {/* Subtitle */}
+                <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
+                    A Oliptus é uma software house premium dedicada a desenvolver tecnologia escalável e de alto desempenho que impulsiona o crescimento do seu negócio.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row pt-4">
+                    <a href="#contact">
+                        <ShimmerButton className="h-12 px-8 text-base font-medium shadow-lg text-white dark:text-white" background="#000000">
+                            Inicie Seu Projeto
+                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </ShimmerButton>
+                    </a>
+                    <a
+                        href="#projects"
+                        className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-background px-8 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                    >
+                        Veja Nosso Trabalho
+                    </a>
+                </div>
+            </div>
         </section>
     );
 };

@@ -1,75 +1,74 @@
-import { motion } from 'framer-motion';
-import { Code2, Smartphone, Globe, Cloud, ArrowUpRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Code2, Smartphone, Globe, LayoutGrid, Check } from "lucide-react";
+import { MagicCard } from "@/components/magicui/MagicCard";
+
+const services = [
+    {
+        icon: Code2,
+        title: "Software Sob Medida",
+        description: "Soluções de backend e frontend personalizadas, construídas para resolver seus desafios de negócio com precisão e eficiência.",
+        features: ["Arquitetura Escalável", "Integração de APIs", "Modernização de Legado"]
+    },
+    {
+        icon: Smartphone,
+        title: "Desenvolvimento Mobile",
+        description: "Aplicativos nativos e multiplataforma que oferecem experiências de usuário fluidas e perfeitas no iOS e Android.",
+        features: ["React Native", "iOS & Android", "Otimização para Lojas"]
+    },
+    {
+        icon: Globe,
+        title: "Plataformas Web",
+        description: "Aplicações web de alta performance e plataformas SaaS otimizadas para velocidade, SEO e conversão.",
+        features: ["Next.js & React", "Otimizado para SEO", "Design Responsivo"]
+    },
+    {
+        icon: LayoutGrid,
+        title: "Design de Produto",
+        description: "Design UI/UX centrado no usuário que transforma requisitos complexos em interfaces intuitivas e belas.",
+        features: ["Pesquisa com Usuário", "Prototipagem", "Design Systems"]
+    }
+];
 
 const Services = () => {
-    const { t } = useTranslation();
-
-    const services = [
-        {
-            icon: <Code2 className="w-8 h-8" />,
-            title: t('services.items.custom_software.title'),
-            description: t('services.items.custom_software.description'),
-        },
-        {
-            icon: <Smartphone className="w-8 h-8" />,
-            title: t('services.items.mobile_development.title'),
-            description: t('services.items.mobile_development.description'),
-        },
-        {
-            icon: <Globe className="w-8 h-8" />,
-            title: t('services.items.web_applications.title'),
-            description: t('services.items.web_applications.description'),
-        },
-        {
-            icon: <Cloud className="w-8 h-8" />,
-            title: t('services.items.cloud_solutions.title'),
-            description: t('services.items.cloud_solutions.description'),
-        },
-    ];
-
     return (
-        <section id="services" className="py-24 bg-[var(--dark-bg)]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('services.title')}</h2>
-                    <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                        {t('services.subtitle')}
+        <section id="services" className="py-24 bg-background">
+            <div className="mx-auto max-w-6xl px-6">
+                <div className="mb-16 text-center md:text-left">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
+                        Nossa Expertise
+                    </h2>
+                    <p className="text-lg text-muted-foreground max-w-2xl">
+                        Entregamos serviços de desenvolvimento de ponta a ponta, do conceito inicial à implementação final e manutenção.
                     </p>
-                </motion.div>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                     {services.map((service, index) => (
-                        <motion.div
+                        <MagicCard
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group p-8 rounded-2xl bg-[var(--card-bg)] hover:bg-[#222] border border-white/5 hover:border-[var(--primary-orange)] transition-all duration-300 shadow-sm hover:shadow-orange-500/10 relative overflow-hidden"
+                            className="flex flex-col justify-start p-8 h-full border-border bg-card shadow-none"
+                            gradientColor="#f3f4f6" // Very subtle gray for light mode
                         >
-                            <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <ArrowUpRight className="w-5 h-5 text-[var(--primary-orange)]" />
+                            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-foreground">
+                                <service.icon className="h-6 w-6" />
                             </div>
 
-                            <div className="mb-6 text-[var(--primary-orange)] bg-orange-500/10 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                {service.icon}
-                            </div>
-
-                            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[var(--primary-orange)] transition-colors">
+                            <h3 className="mb-3 text-2xl font-bold text-foreground">
                                 {service.title}
                             </h3>
 
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="mb-8 text-muted-foreground leading-relaxed">
                                 {service.description}
                             </p>
-                        </motion.div>
+
+                            <ul className="mt-auto space-y-3">
+                                {service.features.map((feature, fIndex) => (
+                                    <li key={fIndex} className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+                                        <Check className="w-4 h-4 text-primary" />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </MagicCard>
                     ))}
                 </div>
             </div>

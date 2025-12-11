@@ -1,180 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --primary-orange: #FF8F39;
-    --secondary-orange: #FF8533;
-    --accent-orange: #FF9E66;
-    --dark-bg: #0a0a0a;
-    --light-bg: #0a0a0a;
-    --card-bg: #171717;
-    --text-primary: #F2EFFF;
-    --text-secondary: #a3a3a3;
-    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 0 0% 10%; /* Very dark gray/black */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 0 0% 96%; /* Light gray for blocks */
+    --secondary-foreground: 0 0% 10%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --supernova-core: 28 100% 70%;
-    --supernova-mid: 15 90% 60%;
-    --supernova-outer: 38 100% 55%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
+    
+    --radius: 0.3rem;
+  }
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--dark-bg);
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-* {
-    box-sizing: border-box;
+/* Notion-like Utilities */
+.notion-quote {
+    @apply border-l-4 border-foreground pl-4 italic text-lg my-4;
 }
 
-@keyframes halo-pulse {
-    0%,
-    100% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.1) translateY(-10px);
-        opacity: 0.8;
-    }
+.notion-callout {
+    @apply bg-secondary p-4 rounded-md flex gap-3 text-sm my-4;
 }
 
-@keyframes halo-pulse-reverse {
-    0%,
-    100% {
-        transform: scale(1.05) translateX(0);
-        opacity: 0.9;
-    }
-
-    50% {
-        transform: scale(0.95) translateX(10px);
-        opacity: 1;
-    }
-}
-
-@keyframes halo-pulse-slow {
-    0%,
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1.15) rotate(5deg);
-        opacity: 1;
-    }
-}
-
-.animate-halo-pulse {
-    animation: halo-pulse 8s ease-in-out infinite;
-}
-
-.animate-halo-pulse-reverse {
-    animation: halo-pulse-reverse 10s ease-in-out infinite;
-}
-
-.animate-halo-pulse-slow {
-    animation: halo-pulse-slow 12s ease-in-out infinite;
-}
-
-@keyframes border-travel {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-.navbar-glow-container {
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.navbar-glow-top,
-.navbar-glow-bottom {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-}
-
-.navbar-glow-top {
-    top: 0;
-}
-
-.navbar-glow-bottom {
-    bottom: 0;
-}
-
-.navbar-glow-top::before,
-.navbar-glow-bottom::before {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
-    animation: border-travel 2.5s linear infinite;
-}
-
-.navbar-glow-bottom::before {
-    animation-delay: -1.25s;
-    animation-direction: reverse;
-}
-
-.navbar-glow-left,
-.navbar-glow-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-}
-
-.navbar-glow-left {
-    left: 0;
-}
-
-.navbar-glow-right {
-    right: 0;
-}
-
-@keyframes border-travel-vertical {
-    0% {
-        transform: translateY(-100%);
-    }
-
-    100% {
-        transform: translateY(100%);
-    }
-}
-
-.navbar-glow-left::before,
-.navbar-glow-right::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 30px;
-    background: linear-gradient(180deg, transparent, var(--primary-orange), transparent);
-    animation: border-travel-vertical 2.5s linear infinite;
-}
-
-.navbar-glow-left::before {
-    animation-delay: -1.25s;
-    animation-direction: reverse;
-}
-
-.navbar-glow-right::before {
-    animation-delay: 0s;
+.notion-link {
+    @apply underline decoration-muted-foreground/50 hover:decoration-foreground underline-offset-4 transition-all;
 }
