@@ -62,6 +62,7 @@ export default function ShaderBackground({ shader, className, ...props }) {
         const fragmentShader = `
       uniform float iTime;
       uniform vec2 iResolution;
+      uniform vec2 iMouse;
 
       ${userShader}
 
@@ -73,7 +74,8 @@ export default function ShaderBackground({ shader, className, ...props }) {
         const material = new THREE.ShaderMaterial({
             uniforms: {
                 iTime: { value: 0 },
-                iResolution: { value: new THREE.Vector2(mount.clientWidth, mount.clientHeight) },
+                iResolution: { value: new THREE.Vector2(mount.clientWidth * (window.devicePixelRatio || 1), mount.clientHeight * (window.devicePixelRatio || 1)) },
+                iMouse: { value: new THREE.Vector2(0, 0) },
             },
             vertexShader: `
         void main() {
@@ -100,14 +102,43 @@ export default function ShaderBackground({ shader, className, ...props }) {
             if (!mount) return;
             const width = mount.clientWidth;
             const height = mount.clientHeight;
+            const dpr = window.devicePixelRatio || 1;
+
             renderer.setSize(width, height);
-            material.uniforms.iResolution.value.set(width, height);
+
+            // Fix: Pass physical pixels to shader to match gl_FragCoord
+            material.uniforms.iResolution.value.set(width * dpr, height * dpr);
+        };
+
+        // Initialize size correctly
+        handleResize();
+
+        // Create mouse vector once to avoid allocation in loop (optional optimization)
+
+        // Handle Mouse Move
+        const handleMouseMove = (event) => {
+            if (!mount) return;
+
+            // Get canvas position relative to viewport
+            const rect = mount.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+
+            // Calculate mouse position relative to canvas, in physical pixels
+            // GLSL coords: (0,0) is bottom-left
+            const x = (event.clientX - rect.left) * dpr;
+            const y = (rect.bottom - event.clientY) * dpr;
+
+            material.uniforms.iMouse.value.set(x, y);
         };
 
         window.addEventListener('resize', handleResize);
+        // Attach listener to window so we catch mouse even if it leaves the precise div, 
+        // or attach to mount if we only want interaction inside. Windows is safer for general "look at" effects.
+        window.addEventListener('mousemove', handleMouseMove);
 
         return () => {
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('mousemove', handleMouseMove);
             cancelAnimationFrame(animationId);
             if (mount && mount.contains(renderer.domElement)) {
                 mount.removeChild(renderer.domElement);

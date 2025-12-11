@@ -6,11 +6,97 @@ import { cn } from "@/lib/utils";
 
 const Hero = () => {
     return (
-        <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-background px-4 pt-16 text-center">
-            {/* Background Pattern - Shader */}
-            <div className="absolute inset-0 h-full w-full opacity-40">
-                <ShaderBackground />
-            </div>
+        <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-white px-4 pt-16 text-center">
+            <ShaderBackground className="absolute inset-0 h-full w-full opacity-100" shader={`
+                   // Helios Shock - Interactive Halo
+                   // Orange/Gold theme with "Electric Shock" mouse interaction
+
+                   float random(in vec2 st) {
+                       return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+                   }
+
+                   float noise(in vec2 st) {
+                       vec2 i = floor(st);
+                       vec2 f = fract(st);
+                       float a = random(i);
+                       float b = random(i + vec2(1.0, 0.0));
+                       float c = random(i + vec2(0.0, 1.0));
+                       float d = random(i + vec2(1.0, 1.0));
+                       vec2 u = f * f * (3.0 - 2.0 * f);
+                       return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+                   }
+
+                   float fbm(in vec2 st) {
+                       float v = 0.0;
+                       float a = 0.5;
+                       mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+                       for (int i = 0; i < 5; i++) {
+                           v += a * noise(st);
+                           st = rot * st * 2.0 + vec2(100.0);
+                           a *= 0.5;
+                       }
+                       return v;
+                   }
+
+                   void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
+                       vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
+                       
+                       // Accurate Mouse Coordinates
+                       vec2 mouse = (iMouse.xy * 2.0 - iResolution.xy) / iResolution.y;
+
+                       vec3 finalColor = vec3(0.0);
+                       
+                       // Distance from mouse to current pixel
+                       float dMouse = distance(uv, mouse);
+                       
+                       // "Shock" field: Strong localized effect near mouse
+                       float shock = exp(-25.0 * dMouse); // Sharper decay = Smaller Mouse Circle
+                       
+                       // Determine if mouse is active (simple check if not near corner 0,0 or similar default)
+                       if (length(iMouse.xy) < 10.0) shock = 0.0;
+
+                       // --- Shape Definition ---
+                       float d = length(uv);
+                       
+                       // Base Noise Movement
+                       float t = iTime * 0.2;
+                       
+                       // Accelerate time/noise freq locally if shocked
+                       float n = fbm(uv * (3.0 + shock * 10.0) + t + shock * iTime * 5.0);
+                       
+                       // Ring shape with distortion
+                       // Add extra jitter to radius if shocked
+                       float dist = abs(d - 0.65 + n * 0.1 + shock * 0.05 * sin(iTime * 50.0)); 
+
+                       // --- Glow (THINNER) ---
+                       // Core strength
+                       float strength = 0.006 / (dist + 0.001); // Thinner core
+                       
+                       // Amplify glow if shocked
+                       strength *= (1.0 + shock * 2.0); 
+                       
+                       // Wide Haze
+                       float haze = 0.02 / (dist + 0.05); // Less haze
+                       
+                       // --- Colors (Electric Orange/Gold) ---
+                       vec3 col1 = vec3(1.0, 0.4, 0.1); // Intense Orange
+                       vec3 col2 = vec3(1.0, 0.8, 0.4); // Bright Gold/Lightning
+                       
+                       // More "White/Electric" core when shocked
+                       vec3 baseColor = mix(col1, col2, sin(d * 10.0 + iTime)*0.5 + 0.5);
+                       vec3 shockColor = vec3(0.8, 0.9, 1.0); // Blue-white electricity
+                       
+                       vec3 color = mix(baseColor, shockColor, shock * 0.8);
+                       
+                       finalColor = (strength * 1.5 + haze) * color;
+                       
+                       // --- Transparency ---
+                       float brightness = dot(finalColor, vec3(0.299, 0.587, 0.114));
+                       float alpha = smoothstep(0.0, 0.5, brightness);
+
+                       fragColor = vec4(finalColor, alpha);
+                   }
+                `} />
 
             <div className="z-10 max-w-5xl space-y-8">
                 {/* Availability Badge */}
